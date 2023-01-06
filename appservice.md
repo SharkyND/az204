@@ -13,7 +13,7 @@ Not isolated App service plans are:
 
 ## Isolated App service environment (ASE)
 
-- Fully isolated and dedicated environment for running webapps
+- Fully isolated and dedicated environment for running webapp
 - High scale and high utilization
 - Isolation and secure network access
 - Fine grain control over network traffic --> Network security group
@@ -62,14 +62,68 @@ New-AzWebApp -Name $webappname -Location $location -AppServicePlan $webappname -
 To create it you need to create the resource and then use azure resource group deployment with template URL
 
 ```
+
+```
 New-AzResourceGroup -Name <resource-group-name> -Location <resource-group-location> #use this command when you need to create a new resource group for your deployment
 New-AzResourceGroupDeployment -ResourceGroupName <resource-group-name> -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-ba...
 ```
 
 ```
-az group create --name I resource-group-name> --location <resource-group-location> #use this command when you need to create a new resource group for your deployment
+az group create --name resource-group-name> --location <resource-group-location> #use this command when you need to create a new resource group for your deployment
 az group deployment create --resource-group <my-resource-group> --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-1:...
 ```
 
+## App service configuration
 
-```
+### Securing webapp with SSL
+
+link: https://app.pluralsight.com/course-player?clipId=3fd64730-532b-41e9-8a55-aa9c984250fb
+
+- Securing a Domain with SSL/TLS binding certificate
+    - Use at least Basic, Standard, Premium subscriptions or isolated plans
+    - Generally better to use public certificates since it will be trusted by the client
+    - Manage vs unmanaged certificates:
+        -One can get certificate from Azure, mapped that to our domain, and it will be managed certificates
+        - Unmanaged certificates will be: a private certificate, or the one you can buy from a public company, and you can upload those and bind them
+        - You can enforce TLS and HTTPS functions
+
+- How can you do it? Create a resource of type "App service domain"
+    - This also creates a public DNS zone --> so we can map domain name record to the app service 
+    
+    How to do it? Go to the custom domain in the webapp. Write the domain name from App service domain that you created. Since Azure public DNS to make sure you own the domain.
+
+![Alt text](./Pictures/appservice/custom_domain_1.png?raw=true "Title")
+
+    Then you need to create two records in App Service Domain:
+    - Create a CNAME record in with Name reffering to the Alias name from Azure domain name
+![Alt text](./Pictures/appservice/custom_domain_2.png?raw=true "Title")
+    - Second record will be the domain verification ID that you get from azure web app custom domain, and put that in the record as well in Azure App service domain with name ``` asuid.www ``` and type txt
+
+![Alt text](./Pictures/appservice/custom_domain_3.png?raw=true "Title")
+
+    - Then just click on Add custom domain, after creating a record
+
+- How to bind SSL after creating the custom domain name and records
+ - In the webapp --> TLS/SSL settings
+ - In the tab click on Private Key certificates. There are a few options like:
+    - Import Azure Service --> Another Azure Services
+    - Private (We can use this for Ramboll)
+    - Import from key vault Certificate
+    - Create App service manage certificates
+![Alt text](./Pictures/appservice/custom_domain_4.png?raw=true "Title")
+The domain name is already selected --> Create certificate
+![Alt text](./Pictures/appservice/custom_domain_5.png?raw=true "Title")
+Bind the certificate. It will be autoselected
+![Alt text](./Pictures/appservice/custom_domain_6.png?raw=true "Title")
+
+The type is important
+    - IP based SSL: one SSL is assigned to one IP.
+    - SNI SSL (Serve name indication): multiple domain can refer to one domain 
+
+### Database connection string
+
+link:https://app.pluralsight.com/course-player?clipId=78528fa0-3ea5-498d-a325-e0150b7bebbb
+
+
+![Alt text](./Pictures/appservice/connectionstring.png?raw=true "Title")
+
