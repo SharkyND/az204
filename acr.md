@@ -107,3 +107,5 @@ az container show --resource-group someRG --name someName
 ```
 az container logs --resource-group someRG --name someName
 ```
+
+Just testing this
