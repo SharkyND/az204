@@ -4,11 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "3ab5961067a75ccf",
+        "id": "42cd19feeb5223eb",
         "type": "tabs",
         "children": [
           {
-            "id": "fd6dde1a62a9cb58",
+            "id": "fd5e225d8f7b7543",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "vm.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "eb8fef1212c15b0c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,7 +31,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,7 +82,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 351.5
   },
   "right": {
     "id": "046be21f670168a8",
@@ -146,11 +159,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fd6dde1a62a9cb58",
+  "active": "eb8fef1212c15b0c",
   "lastOpenFiles": [
+    "armtemplate.md",
     "appservice.md",
     "acr.md",
+    "Pictures/appservice/connectionstring.png",
     "function.md",
-    "armtemplate.md"
+    "vm.md",
+    "Pictures/function/Pasted image 20230301231234.png",
+    "Pictures/function/Pasted image 20230228230136.png",
+    "Pictures/function/Pasted image 20230228231225.png"
   ]
 }

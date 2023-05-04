@@ -19,9 +19,9 @@ Not isolated App service plans are:
 - Fine grain control over network traffic --> Network security group
 - Apps on Vent can connect over VPM to on premises resources
 
-![Alt text](./Pictures/appservice/isolated_app_service.png?raw=true "Title")
+![Alt text](./Pictures/appservice/isolated_app_service_2.png)
 
-![Alt text](./Pictures/appservice/isolated_app_service_2.png?raw=true "Title")
+![Alt text](./Pictures/appservice/isolated_app_service_2.png)
 
 ## az cli deployment
 
@@ -156,6 +156,6 @@ Types of logging:
     -  While doing this there will be ``` Cool down (minutes) ``` which will tell you that it will take this much minutes for the system to come online and attach itself to the existing serves.
     - The rule will check the minutes mentioned in Duration for the CPU (or the metric) and then trigger the scale in or scale out.
 
-![Alt text](./Pictures/appservice/scalingout.png?raw=true "Title")
+![Alt text](./Pictures/appservice/scalingout.png)
 
 - Important to have both scale out rule and scale in rule.
